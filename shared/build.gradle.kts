@@ -1,7 +1,7 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    kotlin(multiplatform)
+    id(androidLib)
+    kotlin(cocopods)
 }
 
 version = "1.0"
@@ -53,10 +53,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk =  Versions.compile_sdk
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 21
-        targetSdk = 32
+        minSdk = Versions.min_sdk
+        targetSdk = Versions.target_sdk
     }
 }
