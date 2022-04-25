@@ -1,14 +1,38 @@
 package com.github.ryutaro.kmmsample.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.github.ryutaro.kmmsample.android.ui.screens.MainView
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
+        Napier.base(DebugAntilog())
+        setContent {
+            MainView {
+                TopAppBar(
+                    title = {
+                        when (it) {
+                            0 -> Text(text = "World Clocks")
+                            else -> Text(text = "Find Meeting")
+                        }
+                    }
+                )
+            }
+        }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MyAppTest() {
 }
